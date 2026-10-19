@@ -1,0 +1,37 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <limits.h>
+
+int parent[100];
+
+int find(int x) {
+    if (parent[x] != x)
+        parent[x] = find(parent[x]);
+    return parent[x];
+}
+
+void kruskalMST(int **cost, int V) {
+
+    for (int i = 0; i < V; i++)
+        parent[i] = i;
+
+    int edgeCount = 0;
+    int totalCost = 0;
+
+    while (edgeCount < V - 1) {
+
+        int min = INT_MAX;
+        int u = -1, v = -1;
+
+        for (int i = 0; i < V; i++) {
+            for (int j = i + 1; j < V; j++) {
+
+                if (cost[i][j] < min &&
+                    cost[i][j] != 9999) {
+
+                    int pu = find(i);
+                    int pv = find(j);
+
+                    if (pu != pv) {
+                        min = cost[i][j];
+}
