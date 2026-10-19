@@ -1,0 +1,37 @@
+#include <stdio.h>
+#include <stdbool.h>
+#include <limits.h>
+#define V 100
+
+int minKey(int key[], bool mstSet[], int vertices) {
+    int min = INT_MAX;
+    int minIndex = -1;
+
+    for (int v = 0; v < vertices; v++) {
+        if (mstSet[v] == false && key[v] < min) {
+            min = key[v];
+            minIndex = v;
+        }
+    }
+
+    return minIndex;
+}
+void printTree(int parent[], int graph[V][V], int vertices) {
+    printf("Edge \tWeight\n");
+    for (int i = 1; i < vertices; i++)
+        printf("%d - %d \t%d \n", parent[i], i, graph[i][parent[i]]);
+}
+
+void prim(int graph[V][V], int vertices) {
+    int parent[V];
+    int key[V];
+    bool mstSet[V];
+
+    // Initialize arrays
+    for (int i = 0; i < vertices; i++) {
+        key[i] = INT_MAX;
+        mstSet[i] = false;
+        parent[i] = -1;
+    }
+
+}
